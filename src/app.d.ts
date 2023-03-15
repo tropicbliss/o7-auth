@@ -8,10 +8,7 @@ declare global {
 	/// <reference types="lucia-auth" />
 	declare namespace Lucia {
 		type Auth = import("$lib/server/lucia").Auth
-		type UserAttributes = {
-			username: string
-			name: string
-		}
+		type UserAttributes = Omit<import("@prisma/client").User, "id">
 	}
 
 	declare namespace App {

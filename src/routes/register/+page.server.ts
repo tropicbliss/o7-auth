@@ -12,7 +12,7 @@ export const load: PageServerLoad = async ({ locals }) => {
 
 const userSchema = z.object({
     name: z.string().min(1).max(64).trim(),
-    username: z.string().min(1).max(64).email(),
+    username: z.string().min(1).max(64).trim(),
     password: z.string().min(6).trim()
 })
 
