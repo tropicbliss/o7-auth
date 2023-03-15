@@ -1,4 +1,4 @@
-import { router, publicProcedure } from '../trpc';
+import { router, publicProcedure, protectedProcedure } from '../trpc';
 import { z } from 'zod';
 
 export const appRouter = router({
@@ -8,7 +8,7 @@ export const appRouter = router({
 				name: z.string().optional(),
 			})
 		)
-		.query(({ input }) => {
+		.query(({ input, ctx }) => {
 			return `Hello, ${input.name ?? 'world'}!`;
 		}),
 });

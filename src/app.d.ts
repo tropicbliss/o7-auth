@@ -1,9 +1,28 @@
 /// <reference types="@sveltejs/kit" />
 
-declare namespace App {
-	// interface Platform {}
-	// interface Locals {}
-	// interface Error {}
-	// interface Session {}
-	// interface Stuff {}
+import type { PrismaClient } from "@prisma/client";
+
+declare global {
+	var prisma: PrismaClient;
+
+	/// <reference types="lucia-auth" />
+	declare namespace Lucia {
+		type Auth = import("$lib/server/lucia").Auth
+		type UserAttributes = {
+			username: string
+			name: string
+		}
+	}
+
+	declare namespace App {
+		// interface Platform {}
+		interface Locals {
+			validate: import("@lucia-auth/sveltekit").Validate
+			validateUser: import("@lucia-auth/sveltekit").ValidateUser
+			setSession: import("@lucia-auth/sveltekit").SetSession
+		}
+		// interface Error {}
+		// interface Session {}
+		// interface Stuff {}
+	}
 }
