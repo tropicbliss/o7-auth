@@ -7,13 +7,13 @@
 </script>
 
 <h1>{$res.data}</h1>
-{#if !data.user}
-	<h1>You are not logged in!</h1>
-	<a href="/api/auth/login">Login</a>
-{:else}
+{#if data.user}
 	<h1>You are now logged in!</h1>
 	<h2>{`Welcome back ${data.user.username}!`}</h2>
 	<form method="post">
 		<button formaction="/api/auth/logout" type="submit">Logout</button>
 	</form>
+{:else}
+	<h1>You are not logged in!</h1>
+	<a href="/api/auth/login">Login</a>
 {/if}
