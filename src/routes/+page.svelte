@@ -13,4 +13,7 @@
 {:else}
 	<h1>You are now logged in!</h1>
 	<h2>{`Welcome back ${data.user.username}!`}</h2>
+	<form method="post">
+		<button formaction="/api/auth/logout" type="submit">Logout</button>
+	</form>
 {/if}
