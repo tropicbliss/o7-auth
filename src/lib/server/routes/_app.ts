@@ -1,4 +1,4 @@
-import { router, publicProcedure, protectedProcedure } from '../trpc';
+import { router, publicProcedure } from '../trpc';
 import { z } from 'zod';
 
 export const appRouter = router({

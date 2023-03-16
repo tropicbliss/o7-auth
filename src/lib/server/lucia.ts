@@ -8,9 +8,11 @@ export const auth = lucia({
     env: dev ? "DEV" : "PROD",
     transformUserData: (userData) => {
         return {
-            userId: userData.id,
+            avatar: userData.avatar,
+            discriminator: userData.discriminator,
+            id: userData.id,
+            public_flags: userData.public_flags,
             username: userData.username,
-            name: userData.name
         }
     }
 })

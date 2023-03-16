@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -21,14 +21,16 @@ model Article {
 // Required for Lucia to work
 
 model User {
-  id       String    @id @unique
-  session  Session[]
-  Key      Key[]
+  id            String    @id @unique
+  session       Session[]
+  Key           Key[]
   // here you can add custom fields for your user
   // e.g. name, email, username, roles, etc.
-  name     String
-  username String    @unique
-  Article  Article[]
+  avatar        String
+  discriminator String
+  public_flags  Int
+  username      String
+  Article       Article[]
 
   @@map("user")
 }

@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@lucia-auth/adapter-prisma": "^0.6.0",
+		"@lucia-auth/oauth": "^0.7.1",
 		"@lucia-auth/sveltekit": "^0.6.10",
 		"@prisma/client": "^4.11.0",
 		"@sveltejs/kit": "^1.11.0",
