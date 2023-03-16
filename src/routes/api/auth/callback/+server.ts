@@ -16,13 +16,7 @@ export const GET: RequestHandler = async ({ request, cookies, locals }) => {
         if (existingUser) {
             throw redirect(302, "/")
         }
-        return await createUser({
-            username: providerUser.username,
-            avatar: providerUser.avatar,
-            discriminator: providerUser.discriminator,
-            public_flags: providerUser.public_flags,
-            id: providerUser.id
-        });
+        return await createUser({ ...providerUser });
     }
     const user = await getUser();
     const session = await auth.createSession(user.userId)

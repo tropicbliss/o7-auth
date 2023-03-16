@@ -7,13 +7,7 @@ export const auth = lucia({
     adapter: prismaAdapter(prisma),
     env: dev ? "DEV" : "PROD",
     transformUserData: (userData) => {
-        return {
-            avatar: userData.avatar,
-            discriminator: userData.discriminator,
-            id: userData.id,
-            public_flags: userData.public_flags,
-            username: userData.username,
-        }
+        return { ...userData }
     }
 })
 
