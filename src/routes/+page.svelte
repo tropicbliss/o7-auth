@@ -6,7 +6,7 @@
 	export let data: PageData;
 </script>
 
-<!-- <h1>{$res.data}</h1> -->
+<h1>{$res.data}</h1>
 {#if !data.user}
 	<h1>You are not logged in</h1>
 {:else}
