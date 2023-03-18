@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Article {
-  id      Int    @id @default(autoincrement())
+  id      String @id @default(cuid())
   title   String
   content String
   User    User   @relation(fields: [userId], references: [id])
