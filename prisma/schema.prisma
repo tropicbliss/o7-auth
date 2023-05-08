@@ -11,19 +11,19 @@ datasource db {
 }
 
 model Article {
-  id      String @id @default(cuid())
+  id      String   @id @default(cuid())
   title   String
   content String
-  User    User   @relation(fields: [userId], references: [id])
+  User    AuthUser @relation(fields: [userId], references: [id])
   userId  String
 }
 
 // Required for Lucia to work
 
-model User {
-  id            String    @id @unique
-  session       Session[]
-  Key           Key[]
+model AuthUser {
+  id            String        @id @unique
+  session       AuthSession[]
+  Key           AuthKey[]
   // here you can add custom fields for your user
   // e.g. name, email, username, roles, etc.
   avatar        String
@@ -32,28 +32,28 @@ model User {
   username      String
   Article       Article[]
 
-  @@map("user")
+  @@map("auth_user")
 }
 
-model Session {
-  id             String @id @unique
+model AuthSession {
+  id             String   @id @unique
   user_id        String
   active_expires BigInt
   idle_expires   BigInt
-  user           User   @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  auth_user      AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
   @@index([user_id])
-  @@map("session")
+  @@map("auth_session")
 }
 
-model Key {
-  id              String  @id @unique
+model AuthKey {
+  id              String   @id @unique
   hashed_password String?
   user_id         String
-  primary         Boolean
+  primary_key     Boolean
   expires         BigInt?
-  user            User    @relation(references: [id], fields: [user_id], onDelete: Cascade)
+  auth_user       AuthUser @relation(references: [id], fields: [user_id], onDelete: Cascade)
 
   @@index([user_id])
-  @@map("key")
+  @@map("auth_key")
 }

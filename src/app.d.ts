@@ -13,11 +13,10 @@ declare global {
 
 	declare namespace App {
 		// interface Platform {}
-		interface Locals {
-			validate: import("@lucia-auth/sveltekit").Validate
-			validateUser: import("@lucia-auth/sveltekit").ValidateUser
-			setSession: import("@lucia-auth/sveltekit").SetSession
-		}
+		type AuthRequest = import("lucia-auth").AuthRequest
+
+		// eslint-disable-next-line @typescript-eslint/no-empty-interface
+		interface Locals extends AuthRequest { }
 		// interface Error {}
 		// interface Session {}
 		// interface Stuff {}
